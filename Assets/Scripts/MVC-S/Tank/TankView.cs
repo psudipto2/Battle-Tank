@@ -42,7 +42,10 @@ public class TankView : MonoBehaviour
     {
         tankController.joystick = joystick;
     }
-
+    public Vector3 GetCurrentTankPosition()
+    {
+        return transform.position;
+    }
     public void SetTankController(TankController _tankController)
     {
         tankController = _tankController;
