@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using tankView;
 using Random = UnityEngine.Random;
 
 public class TankService : MonoSingletonGeneric<TankService>

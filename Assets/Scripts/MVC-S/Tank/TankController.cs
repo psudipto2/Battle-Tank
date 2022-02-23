@@ -36,17 +36,6 @@ public class TankController
     }
 
     
-   /* public void Move()
-    {
-        Vector3 move = joystick.Vertical * rigidbody.transform.forward * TankModel.movementSpeed * Time.deltaTime;
-        rigidbody.MovePosition(rigidbody.transform.position + move);
-    }
-    public void Turn()
-    {
-        float turn = joystick.Horizontal * TankModel.rotationSpeed * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        tankView.rigidbody.MoveRotation(tankView.rigidbody.rotation * turnRotation);
-    }*/
     public void MoveTurn()
     {
         movement = new Vector3(InputX * TankModel.movementSpeed, 0, InputZ * TankModel.rotationSpeed);

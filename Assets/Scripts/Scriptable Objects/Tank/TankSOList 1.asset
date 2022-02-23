@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b27b1d8aeeba61488cfa60ce433bc2d, type: 3}
-  m_Name: TankSOList
+  m_Name: TankSOList 1
   m_EditorClassIdentifier: 
   tanks:
-  - {fileID: 11400000, guid: ba2f5c537a4ed454bbd6cd7d8e5433ea, type: 2}
-  - {fileID: 11400000, guid: 955214127eb99d548a4032a14e09365c, type: 2}
+  - {fileID: 11400000, guid: 9f2ab1114d1c31242a57d3b8c9844677, type: 2}
+  - {fileID: 11400000, guid: c5a7e5b8db2510b4eb4d7ea9b516bf87, type: 2}
   - {fileID: 11400000, guid: cb6d946a172c1eb41833f8d51fe32408, type: 2}

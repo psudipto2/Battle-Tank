@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
-using tankView;
-using Bullet;
 
-namespace tankView
-{
     [CreateAssetMenu(fileName = "TankScriptableObject", menuName = "ScriptableObject/Tank/NewTankScriptableObject")]
     public class TankScriptableObject : ScriptableObject
     {
@@ -16,4 +12,3 @@ namespace tankView
         public float fireRate;
         public Material material;
     }
-}
