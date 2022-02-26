@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankController 
 {
@@ -24,7 +25,30 @@ public class TankController
         TankModel.SetTankController(this);
         Debug.Log("TankView Created");
     }
-   
+
+
+    private BulletScriptableObject GetBullet()
+    {
+        return TankModel.bullet;
+    }
+
+    public void ShootBullet()
+    {
+        Debug.Log("Shoot");
+        BulletService.Instance.CreateNewBullet(GetFiringPosition(), GetFiringAngle(), GetBullet());
+        //Debug.Log("Shoot");
+    }
+
+    private Quaternion GetFiringAngle()
+    {
+        return tankView.transform.rotation;
+    }
+
+    private Vector3 GetFiringPosition()
+    {
+        return tankView.BulletShootPoint.position;
+    }
+
     public Vector3 GetCurrentTankPosition()
     {
         return tankView.transform.position;
@@ -35,7 +59,6 @@ public class TankController
         joystick = movemenetJoystick;
     }
 
-    
     public void MoveTurn()
     {
         movement = new Vector3(InputX * TankModel.movementSpeed, 0, InputZ * TankModel.rotationSpeed);

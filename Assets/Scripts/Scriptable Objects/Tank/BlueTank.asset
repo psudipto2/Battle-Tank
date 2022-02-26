@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlueTank
   m_EditorClassIdentifier: 
   tankType: 2
+  bulletType: {fileID: 11400000, guid: ce364372814f79a44b7354a228c70e57, type: 2}
   tankView: {fileID: 3330266247942693685, guid: 0527fe65680c57e4a945abfcc8dafee8,
     type: 3}
   health: 750

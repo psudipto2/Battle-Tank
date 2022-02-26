@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab632753d464494db40925eab60c66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletShootPoint: {fileID: 6334566358359956303}
   rigidbody: {fileID: 0}
 --- !u!54 &4837061691801344143
 Rigidbody:

@@ -4,7 +4,7 @@
     public class TankScriptableObject : ScriptableObject
     {
         public TankType tankType;
-        //public BulletScriptableObject bulletType;
+        public BulletScriptableObject bulletType;
         public TankView tankView;
         public float health;
         public float movementSpeed;

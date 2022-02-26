@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RedTank
   m_EditorClassIdentifier: 
   tankType: 1
+  bulletType: {fileID: 11400000, guid: 89f8318663847bb4cba678b9ae79a114, type: 2}
   tankView: {fileID: 3330266247942693685, guid: 0527fe65680c57e4a945abfcc8dafee8,
     type: 3}
   health: 500
