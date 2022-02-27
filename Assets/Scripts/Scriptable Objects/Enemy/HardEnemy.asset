@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: HardEnemy
   m_EditorClassIdentifier: 
   enemyType: 4
+  bulletType: {fileID: 11400000, guid: ce364372814f79a44b7354a228c70e57, type: 2}
   enemyView: {fileID: 736956947342226074, guid: 510c81d5eb759e94490baf6ccce4e780,
     type: 3}
   health: 200
-  movementSpeed: 0.2
-  rotationSpeed: 0.25
+  movementSpeed: 20
+  rotationSpeed: 25
   fireRate: 4
+  patrolingRadius: 35
+  ChaseRadius: 30
+  AttackRadius: 25
   material: {fileID: 2100000, guid: 4b4b25f923792ce4ab819907a4629058, type: 2}

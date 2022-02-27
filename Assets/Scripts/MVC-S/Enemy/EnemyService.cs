@@ -25,6 +25,12 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
         enemyController = new EnemyController(enemyModel, enemyScriptable.enemyView);
         enemies.Add(enemyController);
     }
+
+    public void DestroyEnemy(EnemyController enemyController)
+    {
+        enemyController.DestoryController();
+    }
+
     public void SetEnemyController(EnemyController _enemyController)
     {
         enemyController = _enemyController;

@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: BossEnemy
   m_EditorClassIdentifier: 
   enemyType: 5
+  bulletType: {fileID: 11400000, guid: ce364372814f79a44b7354a228c70e57, type: 2}
   enemyView: {fileID: 736956947342226074, guid: 510c81d5eb759e94490baf6ccce4e780,
     type: 3}
   health: 250
-  movementSpeed: 0.25
-  rotationSpeed: 0.3
+  movementSpeed: 25
+  rotationSpeed: 30
   fireRate: 5
+  patrolingRadius: 40
+  ChaseRadius: 35
+  AttackRadius: 30
   material: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}

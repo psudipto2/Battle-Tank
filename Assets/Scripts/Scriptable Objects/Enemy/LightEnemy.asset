@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: LightEnemy
   m_EditorClassIdentifier: 
   enemyType: 1
+  bulletType: {fileID: 11400000, guid: 89f8318663847bb4cba678b9ae79a114, type: 2}
   enemyView: {fileID: 736956947342226074, guid: 510c81d5eb759e94490baf6ccce4e780,
     type: 3}
   health: 50
-  movementSpeed: 0.05
-  rotationSpeed: 0.1
+  movementSpeed: 5
+  rotationSpeed: 10
   fireRate: 1
+  patrolingRadius: 20
+  ChaseRadius: 15
+  AttackRadius: 10
   material: {fileID: 2100000, guid: 65b34bd0b696fd64c809daa8ff1aac63, type: 2}
