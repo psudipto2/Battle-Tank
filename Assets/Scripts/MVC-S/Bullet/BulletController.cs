@@ -27,6 +27,7 @@ public class BulletController
     }
     public void DestroyController()
     {
+        VFXController.Instance.InstantiateEffects(BulletView.BullectDestroyVFX, BulletView.transform.position);
         BulletView.DestroyView();
         BulletModel.DestroyModel();
         BulletView = null;

@@ -22,15 +22,14 @@ public class TankView : MonoBehaviour, IDamagable
     }
     private void Awake()
     {
-        //Fire.onClick.AddListener(ShootBullet);
         FireButton = GameObject.FindGameObjectWithTag("Fire");
         Fire = FireButton.GetComponent<Button>();
-        Fire.onClick.AddListener(Click);
+        Fire.onClick.AddListener(ShootBullet);
         rigidbody = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
     }
 
-    private void Click()
+    public void ShootBullet()
     {
         tankController.ShootBullet();
     }

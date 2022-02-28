@@ -9,6 +9,7 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public EnemyScriptableObjectList enemyList;
     private EnemyModel currentenemyModel;
     private EnemyController enemyController;
+    private Coroutine respawn;
     public EnemyScriptableObject enemyScriptable { get;  private set; }
     private List<EnemyController> enemies = new List<EnemyController>();
     private void Start()
@@ -29,6 +30,7 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public void DestroyEnemy(EnemyController enemyController)
     {
         enemyController.DestoryController();
+        respawn = StartCoroutine(RespawnEnemy());
     }
 
     public void SetEnemyController(EnemyController _enemyController)
@@ -42,5 +44,15 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public EnemyController GetEnemyController(int index = 0)
     {
         return enemies[index];
+    }
+    private IEnumerator RespawnEnemy()
+    {
+        yield return new WaitForSeconds(4f);
+        CreateNewEnemy();
+        if (respawn != null)
+        {
+            StopCoroutine(respawn);
+            respawn = null;
+        }
     }
 }

@@ -666,21 +666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4af28f4eeb4e9a4785d9796369c7904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TankDestroyVFX: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
   rigidbody: {fileID: 0}
   target: {fileID: 0}
   BulletShootPoint: {fileID: 3106308993733537412}
-  Ground:
-    serializedVersion: 2
-    m_Bits: 8
-  Player:
-    serializedVersion: 2
-    m_Bits: 64
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkpointset: 0
-  walkpointRange: 0
-  timeBetweenAttack: 0
-  sightRange: 0
-  attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &8469666480328540231

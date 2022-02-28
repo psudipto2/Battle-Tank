@@ -15,6 +15,7 @@ public class TankController
     private CharacterController characterController;
     public FixedJoystick joystick;
     private Vector3 movement;
+    private float canfire;
     public TankController(TankModel tankModel, TankView tankPrefab)
     {
         TankModel = tankModel;
@@ -35,7 +36,12 @@ public class TankController
     public void ShootBullet()
     {
         Debug.Log("Shoot");
-        BulletService.Instance.CreateNewBullet(GetFiringPosition(), GetFiringAngle(), GetBullet());
+        if (canfire < Time.time)
+        {
+            BulletService.Instance.CreateNewBullet(GetFiringPosition(), GetFiringAngle(), GetBullet());
+            canfire = TankModel.fireRate + Time.time;
+        }
+        
         //Debug.Log("Shoot");
     }
 

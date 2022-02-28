@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class EnemyView : MonoBehaviour,IDamagable
 {
     public NavMeshAgent navMeshAgent { get;  set; }
+    public GameObject TankDestroyVFX;
     private EnemyController enemyController;
     public Rigidbody rigidbody;
     private GameObject Tank;
@@ -36,7 +37,7 @@ public class EnemyView : MonoBehaviour,IDamagable
         enemyController.EnemyStateController();
     }
 
-    private void AttackPlayer()
+   /* private void AttackPlayer()
     {
         //Make sure enemy doesn't move
         navMeshAgent.SetDestination(transform.position);
@@ -106,7 +107,7 @@ public class EnemyView : MonoBehaviour,IDamagable
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyController.EnemyModel.rotationSpeed);
-    }
+    }*/
     public Vector3 GetCurrentEnemyPosition()
     {
         return transform.position;
@@ -119,6 +120,9 @@ public class EnemyView : MonoBehaviour,IDamagable
     public void DestroyView()
     {
         Destroy(this.gameObject);
+        BulletShootPoint = null;
+        enemyController = null;
+        navMeshAgent = null;
     }
     private void OnDrawGizmosSelected()
     {

@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339b965cda9494b489b9537dd29ee2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BullectDestroyVFX: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
   rigidbody: {fileID: 0}
 --- !u!1 &7503884009581637056
 GameObject:
