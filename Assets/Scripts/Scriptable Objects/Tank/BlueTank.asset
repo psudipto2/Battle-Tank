@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225cec5182ae5749b8bd92bcb85c44f, type: 3}
+  m_Name: BlueTank
+  m_EditorClassIdentifier: 
+  tankType: 2
+  bulletType: {fileID: 11400000, guid: ce364372814f79a44b7354a228c70e57, type: 2}
+  tankView: {fileID: 3330266247942693685, guid: 0527fe65680c57e4a945abfcc8dafee8,
+    type: 3}
+  health: 750
+  movementSpeed: 0.2
+  rotationSpeed: 0.2
+  fireRate: 1
+  material: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
