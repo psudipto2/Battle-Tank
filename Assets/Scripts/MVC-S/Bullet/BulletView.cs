@@ -6,6 +6,7 @@ using UnityEngine;
 public class BulletView : MonoBehaviour
 {
     private BulletController bulletController;
+    public GameObject BullectDestroyVFX;
     public Rigidbody rigidbody;
     public void SetBulletController(BulletController _bulletController)
     {
@@ -29,6 +30,8 @@ public class BulletView : MonoBehaviour
             {
                 iDamagable.TakeDamage(bulletController.BulletModel.damage);
             }
+            
+
             BulletService.Instance.DestroyBullet(bulletController);
         }
 

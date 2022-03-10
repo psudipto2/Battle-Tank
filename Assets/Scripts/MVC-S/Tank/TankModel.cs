@@ -16,7 +16,7 @@ public class TankModel
         movementSpeed = tankScriptable.movementSpeed;
         rotationSpeed = tankScriptable.rotationSpeed;
         bullet = tankScriptable.bulletType;
-        fireRate = tankScriptable.fireRate;
+        fireRate = 1/tankScriptable.fireRate;
     }
     public void SetTankController(TankController _tankController)
     {

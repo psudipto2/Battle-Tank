@@ -5,13 +5,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class EnemyController :MonoBehaviour
+public class EnemyController 
 {
     public EnemyModel EnemyModel { get; set; }
     private EnemyView enemyView { get; set; }
     private Rigidbody rigidbody;
     bool alreadyAttacked;
     private float timer;
+    private float canfire;
+    private MonoBehaviour _mb;
     public NavMeshAgent navMeshAgent { get; set; }
 
     public EnemyService EnemyService { get; }
@@ -32,6 +34,7 @@ public class EnemyController :MonoBehaviour
 
     private void Dead()
     {
+        VFXController.Instance.InstantiateEffects(enemyView.TankDestroyVFX, enemyView.transform.position);
         EnemyService.Instance.DestroyEnemy(this);
     }
     public void ApplyDamage(float damage)
@@ -92,20 +95,16 @@ public class EnemyController :MonoBehaviour
 
         enemyView.transform.LookAt(enemyView.target);
 
-        if (!alreadyAttacked)
+        if (canfire<Time.time)
         {
             ///Attack code here
             BulletService.Instance.CreateNewBullet(enemyView.BulletShootPoint.position, enemyView.transform.rotation, EnemyModel.bullet);
             ///End of attack code
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), 1f);
+            canfire = EnemyModel.fireRate+Time.time;
         }
     }
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
+
     private void Patroling()
     {
         timer += Time.deltaTime;
@@ -118,7 +117,7 @@ public class EnemyController :MonoBehaviour
     private void SetPatrolingDestination()
     {
         Vector3 newDestination = GetRandomPosition();
-        transform.LookAt(newDestination);
+        enemyView.transform.LookAt(newDestination);
         navMeshAgent.SetDestination(newDestination);
     }
     public Vector3 GetRandomPosition()
