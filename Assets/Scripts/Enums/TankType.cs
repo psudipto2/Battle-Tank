@@ -1,5 +1,4 @@
-﻿namespace tankView
-{
+﻿
     public enum TankType
     {
         None,
@@ -7,4 +6,3 @@
         BlueTank,
         GreenTank,
     }
-}

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Enemy
-{
     public enum EnemyType
     {
         None,
@@ -11,4 +9,3 @@ namespace Enemy
         Hard,
         Boss
     }
-}

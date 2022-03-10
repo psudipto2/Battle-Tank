@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8457ec83a66be8f43b6da43cbca3a686, type: 3}
+  m_Name: BossEnemy
+  m_EditorClassIdentifier: 
+  enemyType: 5
+  bulletType: {fileID: 11400000, guid: ce364372814f79a44b7354a228c70e57, type: 2}
+  enemyView: {fileID: 736956947342226074, guid: 510c81d5eb759e94490baf6ccce4e780,
+    type: 3}
+  health: 250
+  movementSpeed: 25
+  rotationSpeed: 30
+  fireRate: 5
+  patrolingRadius: 40
+  ChaseRadius: 35
+  AttackRadius: 30
+  material: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}

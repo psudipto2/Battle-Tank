@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankController 
 {
@@ -14,6 +15,7 @@ public class TankController
     private CharacterController characterController;
     public FixedJoystick joystick;
     private Vector3 movement;
+    private float canfire;
     public TankController(TankModel tankModel, TankView tankPrefab)
     {
         TankModel = tankModel;
@@ -24,7 +26,35 @@ public class TankController
         TankModel.SetTankController(this);
         Debug.Log("TankView Created");
     }
-   
+
+
+    private BulletScriptableObject GetBullet()
+    {
+        return TankModel.bullet;
+    }
+
+    public void ShootBullet()
+    {
+        Debug.Log("Shoot");
+        if (canfire < Time.time)
+        {
+            BulletService.Instance.CreateNewBullet(GetFiringPosition(), GetFiringAngle(), GetBullet());
+            canfire = TankModel.fireRate + Time.time;
+        }
+        
+        //Debug.Log("Shoot");
+    }
+
+    private Quaternion GetFiringAngle()
+    {
+        return tankView.transform.rotation;
+    }
+
+    private Vector3 GetFiringPosition()
+    {
+        return tankView.BulletShootPoint.position;
+    }
+
     public Vector3 GetCurrentTankPosition()
     {
         return tankView.transform.position;
@@ -35,18 +65,6 @@ public class TankController
         joystick = movemenetJoystick;
     }
 
-    
-   /* public void Move()
-    {
-        Vector3 move = joystick.Vertical * rigidbody.transform.forward * TankModel.movementSpeed * Time.deltaTime;
-        rigidbody.MovePosition(rigidbody.transform.position + move);
-    }
-    public void Turn()
-    {
-        float turn = joystick.Horizontal * TankModel.rotationSpeed * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        tankView.rigidbody.MoveRotation(tankView.rigidbody.rotation * turnRotation);
-    }*/
     public void MoveTurn()
     {
         movement = new Vector3(InputX * TankModel.movementSpeed, 0, InputZ * TankModel.rotationSpeed);
