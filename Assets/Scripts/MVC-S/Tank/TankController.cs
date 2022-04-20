@@ -25,6 +25,7 @@ public class TankController
         tankView.SetTankController(this);
         TankModel.SetTankController(this);
         Debug.Log("TankView Created");
+        SubscribeEvent();
     }
 
 
@@ -40,6 +41,7 @@ public class TankController
         {
             BulletService.Instance.CreateNewBullet(GetFiringPosition(), GetFiringAngle(), GetBullet());
             canfire = TankModel.fireRate + Time.time;
+            EventServices.Instance.InvokeOnPlayerFiredBulletEvent();
         }
         
         //Debug.Log("Shoot");
@@ -91,4 +93,20 @@ public class TankController
         InputX = joystick.Horizontal;
         InputZ = joystick.Vertical;
     }
+    private void UpdateBulletsFiredCount()
+    {
+        TankModel.bulletsFired += 1;
+        PlayerPrefs.SetInt("BulletsFired", TankModel.bulletsFired);
+        AcivementService.Instance.GetAchievementController().CheckForBulletFiredAchievement();
+    }
+    private void SubscribeEvent()
+    {
+        EventServices.Instance.PlayerFiredBullet += UpdateBulletsFiredCount;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        EventServices.Instance.PlayerFiredBullet -= UpdateBulletsFiredCount;
+    }
+
 }

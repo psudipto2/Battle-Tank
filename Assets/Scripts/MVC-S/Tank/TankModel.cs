@@ -8,6 +8,7 @@ public class TankModel
     public float movementSpeed { get; private set; }
     public float rotationSpeed { get; private set; }
     public float fireRate { get; private set; }
+    public int bulletsFired { get; set; }
     public BulletScriptableObject bullet { get; private set; }
     private TankController tankController;
 
