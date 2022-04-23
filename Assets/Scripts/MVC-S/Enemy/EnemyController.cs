@@ -18,14 +18,14 @@ public class EnemyController
 
     public EnemyService EnemyService { get; }
 
-    public EnemyController(EnemyModel enemyModel, EnemyView enemyPrefab)
+    public EnemyController(EnemyModel enemyModel, EnemyView enemyPrefab, TankView tankView)
     {
         EnemyModel = enemyModel;
         enemyView = GameObject.Instantiate<EnemyView>(enemyPrefab);
         rigidbody = enemyView.GetComponent<Rigidbody>();
         enemyView.SetEnemyController(this);
-        EnemyModel.SetEnemyController(this);
-        Debug.Log("EnemyView Created");
+        enemyView.ChangeColor(enemyModel.material);
+        enemyView.tankView = tankView;
         navMeshAgent = enemyView.GetComponent<NavMeshAgent>();
         navMeshAgent.angularSpeed = EnemyModel.rotationSpeed;
         navMeshAgent.speed = EnemyModel.movementSpeed;

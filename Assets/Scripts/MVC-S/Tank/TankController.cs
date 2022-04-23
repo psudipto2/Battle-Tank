@@ -23,8 +23,8 @@ public class TankController
         rigidbody = tankView.GetComponent<Rigidbody>();
         characterController = tankView.GetComponent<CharacterController>();
         tankView.SetTankController(this);
+        tankView.ChangeColor(TankModel.material);
         TankModel.SetTankController(this);
-        Debug.Log("TankView Created");
         SubscribeEvent();
     }
 

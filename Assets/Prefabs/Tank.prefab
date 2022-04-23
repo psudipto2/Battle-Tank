@@ -423,6 +423,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletShootPoint: {fileID: 6334566358359956303}
   rigidbody: {fileID: 0}
+  childs:
+  - {fileID: 2657692725266695860}
+  - {fileID: 2657692725266695858}
+  - {fileID: 2657692725266695868}
+  - {fileID: 2657692725266695862}
+  camera: {fileID: 439347835612204718, guid: 7c76d3e8697b58f48b788581fdfc1f63, type: 3}
 --- !u!54 &4837061691801344143
 Rigidbody:
   m_ObjectHideFlags: 0

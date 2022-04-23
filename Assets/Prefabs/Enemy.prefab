@@ -672,6 +672,12 @@ MonoBehaviour:
   BulletShootPoint: {fileID: 3106308993733537412}
   playerInSightRange: 0
   playerInAttackRange: 0
+  childs:
+  - {fileID: 6345906589308859263}
+  - {fileID: 6345906589308859257}
+  - {fileID: 6345906589308859255}
+  - {fileID: 6345906589308859261}
+  tankView: {fileID: 0}
 --- !u!195 &8469666480328540231
 NavMeshAgent:
   m_ObjectHideFlags: 0

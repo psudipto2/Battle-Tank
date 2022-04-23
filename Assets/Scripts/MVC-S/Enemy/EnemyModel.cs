@@ -14,6 +14,7 @@ public class EnemyModel
     public float attackRaius { get; private set; }
     public BulletScriptableObject bullet { get; private set; }
     public float fireRate { get;  set; }
+    public Material material { get; private set; }
     public EnemyModel(EnemyScriptableObject enemyScriptable, EnemyScriptableObjectList enemyList)
     {
         movementSpeed = enemyScriptable.movementSpeed;
@@ -24,6 +25,7 @@ public class EnemyModel
         attackRaius = enemyScriptable.AttackRadius;
         bullet = enemyScriptable.bulletType;
         fireRate = 1 / enemyScriptable.fireRate;
+        material = enemyScriptable.material;
     }
 
 

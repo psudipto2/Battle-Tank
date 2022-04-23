@@ -12,6 +12,7 @@ public class TankService : MonoSingletonGeneric<TankService>
     private TankModel currentTankModel;
     private TankController tankController;
     public FixedJoystick joystick;
+    [SerializeField]private Button fireButton;
 
     public TankScriptableObject tankScriptable { get; private set; }
     private List<TankController> tanks = new List<TankController>();
@@ -31,6 +32,8 @@ public class TankService : MonoSingletonGeneric<TankService>
         currentTankModel = tankModel;
         tankController = new TankController(tankModel, tankScriptable.tankView);
         tanks.Add(tankController);
+        fireButton.onClick.AddListener(tankController.ShootBullet);
+        EnemyService.Instance.SetTank(tankController.tankView);
     }
     public void setTankJoyStick()
     {

@@ -12,23 +12,31 @@ public class TankView : MonoBehaviour, IDamagable
     public Transform BulletShootPoint;
     private CharacterController characterController;
     public Rigidbody rigidbody;
-    private GameObject FireButton;
-    private Button Fire;
+    public MeshRenderer[] childs;
+    [SerializeField] private CameraController camera;
 
-   
+
     private void FixedUpdate()
     {
         tankController.MoveTurn();
+        SetCamera();
     }
     private void Awake()
     {
-        FireButton = GameObject.FindGameObjectWithTag("Fire");
-        Fire = FireButton.GetComponent<Button>();
-        Fire.onClick.AddListener(ShootBullet);
         rigidbody = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
     }
-
+    private void SetCamera()
+    {
+        CameraController.Instance.SetPosition(transform.position);
+    }
+    public void ChangeColor(Material material)
+    {
+        for (int i = 0; i < childs.Length; i++)
+        {
+            childs[i].material = material;
+        }
+    }
     public void ShootBullet()
     {
         tankController.ShootBullet();
@@ -37,7 +45,6 @@ public class TankView : MonoBehaviour, IDamagable
     private void Update()
     {
         tankController.UpdateTank();
-        //ShootBullet();
     }
 
 

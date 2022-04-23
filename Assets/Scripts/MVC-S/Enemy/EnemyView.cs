@@ -17,6 +17,8 @@ public class EnemyView : MonoBehaviour,IDamagable
     private float timer;
     bool alreadyAttacked;
     public bool playerInSightRange, playerInAttackRange;
+    public MeshRenderer[] childs;
+    [HideInInspector] public TankView tankView;
     public void SetEnemyController(EnemyController _enemyController)
     {
         enemyController = _enemyController;
@@ -26,88 +28,94 @@ public class EnemyView : MonoBehaviour,IDamagable
         rigidbody = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         Tank = GameObject.Find("Tank(Clone)");
-        target = Tank.GetComponent<Transform>();
+        target = tankView.GetComponent<Transform>();
         navMeshAgent.angularSpeed = enemyController.EnemyModel.rotationSpeed;
         navMeshAgent.speed = enemyController.EnemyModel.movementSpeed;
         navMeshAgent.stoppingDistance = enemyController.EnemyModel.attackRaius;
     }
     private void Update()
     {
-        //BulletShoot();
         enemyController.EnemyStateController();
     }
-
-   /* private void AttackPlayer()
+    public void ChangeColor(Material material)
     {
-        //Make sure enemy doesn't move
-        navMeshAgent.SetDestination(transform.position);
-
-        transform.LookAt(target);
-
-        if (!alreadyAttacked)
+        for (int i = 0; i < childs.Length; i++)
         {
-            ///Attack code here
-            BulletService.Instance.CreateNewBullet(BulletShootPoint.position, transform.rotation, enemyController.EnemyModel.bullet);
-            ///End of attack code
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), 2f);
+            childs[i].material = material;
         }
     }
 
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
+    /* private void AttackPlayer()
+     {
+         //Make sure enemy doesn't move
+         navMeshAgent.SetDestination(transform.position);
+
+         transform.LookAt(target);
+
+         if (!alreadyAttacked)
+         {
+             ///Attack code here
+             BulletService.Instance.CreateNewBullet(BulletShootPoint.position, transform.rotation, enemyController.EnemyModel.bullet);
+             ///End of attack code
+
+             alreadyAttacked = true;
+             Invoke(nameof(ResetAttack), 2f);
+         }
+     }
+
+     private void ResetAttack()
+     {
+         alreadyAttacked = false;
+     }
 
 
-    private void Patroling()
-    {
-        timer += Time.deltaTime;
-        if (timer > 2f)
-        {
-            SetPatrolingDestination();
-            timer = 0;
-        }
-    }
-    private void SetPatrolingDestination()
-    {
-        Vector3 newDestination = GetRandomPosition();
-        transform.LookAt(newDestination);
-        navMeshAgent.SetDestination(newDestination);
-    }
-    public Vector3 GetRandomPosition()
-    {
-        Vector3 randDir = UnityEngine.Random.insideUnitSphere * enemyController.EnemyModel.PatrolRaius;
-        randDir += EnemyService.Instance.enemyScriptable.enemyView.transform.position;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDir, out navHit, enemyController.EnemyModel.PatrolRaius, NavMesh.AllAreas);
-        return navHit.position;
-    }
+     private void Patroling()
+     {
+         timer += Time.deltaTime;
+         if (timer > 2f)
+         {
+             SetPatrolingDestination();
+             timer = 0;
+         }
+     }
+     private void SetPatrolingDestination()
+     {
+         Vector3 newDestination = GetRandomPosition();
+         transform.LookAt(newDestination);
+         navMeshAgent.SetDestination(newDestination);
+     }
+     public Vector3 GetRandomPosition()
+     {
+         Vector3 randDir = UnityEngine.Random.insideUnitSphere * enemyController.EnemyModel.PatrolRaius;
+         randDir += EnemyService.Instance.enemyScriptable.enemyView.transform.position;
+         NavMeshHit navHit;
+         NavMesh.SamplePosition(randDir, out navHit, enemyController.EnemyModel.PatrolRaius, NavMesh.AllAreas);
+         return navHit.position;
+     }
 
-    private void BulletShoot()
-    {
-        float distance = Vector3.Distance(target.position, transform.position);
-        if (distance <= enemyController.EnemyModel.chaseRadius)
-        {
-            faceTarget();
-            navMeshAgent.SetDestination(target.position);
-            if (distance <= navMeshAgent.stoppingDistance)
-            {
-                AttackPlayer();
-            }
-        }
-        else
-        {
-            Patroling();
-        }
-    }
-    private void faceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyController.EnemyModel.rotationSpeed);
-    }*/
+     private void BulletShoot()
+     {
+         float distance = Vector3.Distance(target.position, transform.position);
+         if (distance <= enemyController.EnemyModel.chaseRadius)
+         {
+             faceTarget();
+             navMeshAgent.SetDestination(target.position);
+             if (distance <= navMeshAgent.stoppingDistance)
+             {
+                 AttackPlayer();
+             }
+         }
+         else
+         {
+             Patroling();
+         }
+     }
+     private void faceTarget()
+     {
+         Vector3 direction = (target.position - transform.position).normalized;
+         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyController.EnemyModel.rotationSpeed);
+     }*/
     public Vector3 GetCurrentEnemyPosition()
     {
         return transform.position;

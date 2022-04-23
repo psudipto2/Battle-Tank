@@ -10,6 +10,7 @@ public class TankModel
     public float fireRate { get; private set; }
     public int bulletsFired { get; set; }
     public BulletScriptableObject bullet { get; private set; }
+    public Material material { get; private set; }
     private TankController tankController;
 
     public TankModel(TankScriptableObject tankScriptable, TankScriptableObjectList tankList)
@@ -17,6 +18,7 @@ public class TankModel
         movementSpeed = tankScriptable.movementSpeed;
         rotationSpeed = tankScriptable.rotationSpeed;
         bullet = tankScriptable.bulletType;
+        material = tankScriptable.material;
         fireRate = 1/tankScriptable.fireRate;
     }
     public void SetTankController(TankController _tankController)

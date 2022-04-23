@@ -12,6 +12,8 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     private Coroutine respawn;
     public EnemyScriptableObject enemyScriptable { get;  private set; }
     private List<EnemyController> enemies = new List<EnemyController>();
+    private TankView tank;
+    private int enemyNumber = 0;
     private void Start()
     {
         CreateNewEnemy();
@@ -19,18 +21,26 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public void CreateNewEnemy()
     {
         int rand = Random.Range(0, enemyList.enemies.Length);
-        enemyScriptable = enemyList.enemies[rand];
+        enemyScriptable = enemyList.enemies[enemyNumber];
 
         EnemyModel enemyModel = new EnemyModel(enemyScriptable, enemyList);
         currentenemyModel = enemyModel;
-        enemyController = new EnemyController(enemyModel, enemyScriptable.enemyView);
+        enemyController = new EnemyController(enemyModel, enemyScriptable.enemyView,tank);
         enemies.Add(enemyController);
     }
 
     public void DestroyEnemy(EnemyController enemyController)
     {
         enemyController.DestoryController();
-        respawn = StartCoroutine(RespawnEnemy());
+        enemyNumber += 1;
+        if (enemyNumber < enemyList.enemies.Length)
+        {
+            respawn = StartCoroutine(RespawnEnemy());
+        }
+    }
+    public void SetTank(TankView tankView)
+    {
+        tank = tankView;
     }
 
     public void SetEnemyController(EnemyController _enemyController)
