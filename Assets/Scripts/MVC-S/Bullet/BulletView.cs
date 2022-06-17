@@ -18,7 +18,6 @@ public class BulletView : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Debug.Log("BulletView");
         bulletController.Movement();
     }
     private void OnTriggerEnter(Collider other)

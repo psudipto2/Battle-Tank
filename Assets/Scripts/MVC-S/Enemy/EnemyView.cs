@@ -7,35 +7,40 @@ using Random = UnityEngine.Random;
 
 public class EnemyView : MonoBehaviour,IDamagable
 {
-    public NavMeshAgent navMeshAgent { get;  set; }
-    public GameObject TankDestroyVFX;
-    private EnemyController enemyController;
+    [HideInInspector] public NavMeshAgent navMeshAgent { get;  set; }
+    [HideInInspector] public GameObject TankDestroyVFX;
+    public EnemyController enemyController;
     public Rigidbody rigidbody;
-    private GameObject Tank;
-    public Transform target;
+    [SerializeField] public Vector3 target;
     public Transform BulletShootPoint;
-    private float timer;
-    bool alreadyAttacked;
-    public bool playerInSightRange, playerInAttackRange;
     public MeshRenderer[] childs;
-    [HideInInspector] public TankView tankView;
+    [SerializeField] public TankView tankView;
+    public State currentState;
+    [SerializeField] public EnemyStates initialState;
+    [SerializeField] public EnemyStates activeState;
+    public EnemyPatrolingState patrolingState;
+    public EnemyChasingState chasingState;
+    public EnemyAttackingState attackingState;
     public void SetEnemyController(EnemyController _enemyController)
     {
         enemyController = _enemyController;
     }
     private void Start()
     {
+
+        
+        target = TankService.Instance.tankController.tankView.GetCurrentTankPosition();
+        enemyController.InitialEnemyState();
+        InitializeState();
+    }
+    private void Awake()
+    {
         rigidbody = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        Tank = GameObject.Find("Tank(Clone)");
-        target = tankView.GetComponent<Transform>();
-        navMeshAgent.angularSpeed = enemyController.EnemyModel.rotationSpeed;
-        navMeshAgent.speed = enemyController.EnemyModel.movementSpeed;
-        navMeshAgent.stoppingDistance = enemyController.EnemyModel.attackRaius;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        enemyController.EnemyStateController();
+        //target = TankService.Instance.tankController.tankView.GetCurrentTankPosition();
     }
     public void ChangeColor(Material material)
     {
@@ -44,78 +49,28 @@ public class EnemyView : MonoBehaviour,IDamagable
             childs[i].material = material;
         }
     }
-
-    /* private void AttackPlayer()
-     {
-         //Make sure enemy doesn't move
-         navMeshAgent.SetDestination(transform.position);
-
-         transform.LookAt(target);
-
-         if (!alreadyAttacked)
-         {
-             ///Attack code here
-             BulletService.Instance.CreateNewBullet(BulletShootPoint.position, transform.rotation, enemyController.EnemyModel.bullet);
-             ///End of attack code
-
-             alreadyAttacked = true;
-             Invoke(nameof(ResetAttack), 2f);
-         }
-     }
-
-     private void ResetAttack()
-     {
-         alreadyAttacked = false;
-     }
+    private void InitializeState()
+    {
+        switch (initialState)
+        {
+            case EnemyStates.Attacking:
+                currentState = attackingState;
+                break;
+            case EnemyStates.Chasing:
+                currentState = chasingState;
+                break;
+            case EnemyStates.Patroling:
+                currentState = patrolingState;
+                break;
+            default:
+                currentState = null;
+                break;
+        }
+        Debug.Log("Entering State");
+        ChangeState(currentState);
+    }
 
 
-     private void Patroling()
-     {
-         timer += Time.deltaTime;
-         if (timer > 2f)
-         {
-             SetPatrolingDestination();
-             timer = 0;
-         }
-     }
-     private void SetPatrolingDestination()
-     {
-         Vector3 newDestination = GetRandomPosition();
-         transform.LookAt(newDestination);
-         navMeshAgent.SetDestination(newDestination);
-     }
-     public Vector3 GetRandomPosition()
-     {
-         Vector3 randDir = UnityEngine.Random.insideUnitSphere * enemyController.EnemyModel.PatrolRaius;
-         randDir += EnemyService.Instance.enemyScriptable.enemyView.transform.position;
-         NavMeshHit navHit;
-         NavMesh.SamplePosition(randDir, out navHit, enemyController.EnemyModel.PatrolRaius, NavMesh.AllAreas);
-         return navHit.position;
-     }
-
-     private void BulletShoot()
-     {
-         float distance = Vector3.Distance(target.position, transform.position);
-         if (distance <= enemyController.EnemyModel.chaseRadius)
-         {
-             faceTarget();
-             navMeshAgent.SetDestination(target.position);
-             if (distance <= navMeshAgent.stoppingDistance)
-             {
-                 AttackPlayer();
-             }
-         }
-         else
-         {
-             Patroling();
-         }
-     }
-     private void faceTarget()
-     {
-         Vector3 direction = (target.position - transform.position).normalized;
-         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * enemyController.EnemyModel.rotationSpeed);
-     }*/
     public Vector3 GetCurrentEnemyPosition()
     {
         return transform.position;
@@ -132,13 +87,14 @@ public class EnemyView : MonoBehaviour,IDamagable
         enemyController = null;
         navMeshAgent = null;
     }
-    private void OnDrawGizmosSelected()
+    public void ChangeState(State newState)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemyController.EnemyModel.PatrolRaius);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, enemyController.EnemyModel.chaseRadius);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, enemyController.EnemyModel.attackRaius);
+        if (currentState != null)
+        {
+            currentState.OnStateExit();
+        }
+
+        currentState = newState;
+        currentState.OnStateEnter();
     }
 }

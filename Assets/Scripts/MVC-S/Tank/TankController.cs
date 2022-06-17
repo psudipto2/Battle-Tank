@@ -44,7 +44,7 @@ public class TankController
             EventServices.Instance.InvokeOnPlayerFiredBulletEvent();
         }
         
-        //Debug.Log("Shoot");
+        
     }
 
     private Quaternion GetFiringAngle()

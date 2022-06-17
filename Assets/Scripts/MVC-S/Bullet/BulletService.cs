@@ -13,13 +13,10 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         BulletModel bulletModel = new BulletModel(bullet);
         BulletController bulletController = new BulletController(bullet.bulletView, bulletModel, position, rotation);
         bullets.Add(bulletController);
-        //Debug.Log("Bullet");
+        
     }
 
-   /* public void SetBulletController(BulletController _bulletController)
-    {
-        bulletController = _bulletController;
-    }*/
+
     public void DestroyBullet(BulletController bulletController)
     {
         if (bulletController != null)
