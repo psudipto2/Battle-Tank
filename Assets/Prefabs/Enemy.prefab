@@ -669,8 +669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4af28f4eeb4e9a4785d9796369c7904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 8469666480328540231}
   TankDestroyVFX: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
-  rigidbody: {fileID: 0}
+  rigidbody: {fileID: 4599165755005726020}
   target: {x: 0, y: 0, z: 0}
   BulletShootPoint: {fileID: 3106308993733537412}
   childs:
@@ -680,7 +681,7 @@ MonoBehaviour:
   - {fileID: 6345906589308859261}
   tankView: {fileID: 0}
   currentState: {fileID: 0}
-  initialState: 0
+  initialState: 1
   activeState: 0
   patrolingState: {fileID: 6497692514539578442}
   chasingState: {fileID: 4139326522865279074}

@@ -64,7 +64,7 @@ public class EnemyController
         enemyView = null;
 
     }
-    public void InitialEnemyState()
+    /*public void InitialEnemyState()
     {
         float distance = Vector3.Distance(enemyView.target, enemyView.transform.position);
         if (distance <= EnemyModel.chaseRadius)
@@ -79,5 +79,5 @@ public class EnemyController
         {
             enemyView.initialState = EnemyStates.Patroling;
         }
-    }
+    }*/
 }

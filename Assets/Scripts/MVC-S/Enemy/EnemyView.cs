@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyView : MonoBehaviour,IDamagable
 {
-    [HideInInspector] public NavMeshAgent navMeshAgent { get;  set; }
+    public NavMeshAgent navMeshAgent;
     [HideInInspector] public GameObject TankDestroyVFX;
     public EnemyController enemyController;
     public Rigidbody rigidbody;
@@ -30,18 +30,14 @@ public class EnemyView : MonoBehaviour,IDamagable
 
         
         target = TankService.Instance.tankController.tankView.GetCurrentTankPosition();
-        enemyController.InitialEnemyState();
+        //enemyController.InitialEnemyState();
         InitializeState();
     }
-    private void Awake()
+    /*private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-    private void FixedUpdate()
-    {
-        //target = TankService.Instance.tankController.tankView.GetCurrentTankPosition();
-    }
+    }*/
     public void ChangeColor(Material material)
     {
         for (int i = 0; i < childs.Length; i++)

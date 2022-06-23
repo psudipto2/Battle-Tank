@@ -8,18 +8,15 @@ public class State : MonoBehaviour
     [SerializeField] protected EnemyView enemyView;
     protected EnemyModel enemyModel;
     protected NavMeshAgent navMeshAgent { get; set; }
-    public void Start()
+    public virtual void OnStateEnter()
     {
+        this.enabled = true;
         enemyView = EnemyService.Instance.GetEnemy();
         navMeshAgent = enemyView.navMeshAgent;
         enemyModel = enemyView.enemyController.EnemyModel;
         navMeshAgent.angularSpeed = enemyView.enemyController.EnemyModel.rotationSpeed;
         navMeshAgent.speed = enemyView.enemyController.EnemyModel.movementSpeed;
         navMeshAgent.stoppingDistance = enemyView.enemyController.EnemyModel.attackRaius;
-    }
-    public virtual void OnStateEnter()
-    {
-        this.enabled = true;
     }
     public virtual void OnStateExit()
     {

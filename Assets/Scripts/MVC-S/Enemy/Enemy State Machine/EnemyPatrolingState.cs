@@ -12,10 +12,6 @@ public class EnemyPatrolingState : State
         enemyView.activeState = EnemyStates.Patroling;
         SetPatrolingDestination();
     }
-    private void Start()
-    {
-        base.Start();
-    }
     public override void OnStateExit()
     {
         base.OnStateExit();
